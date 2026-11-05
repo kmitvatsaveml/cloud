@@ -246,6 +246,10 @@ def review(state: dict) -> dict:
             kws = [w for w in re.findall(r"[a-z]{4,}", req.lower()) if w not in {"with", "each", "runs", "that", "from"}]
             hits = [w for w in kws if w in alltext]
             met = bool(tr.get("ok")) and len(hits) >= max(1, len(kws) // 3)
+            if "paid" in req.lower():
+                reqs = files.get("requirements.txt", "").lower()
+                paid = [p for p in ("openai", "anthropic", "cohere", "replicate", "boto3", "google-cloud") if p in reqs]
+                met, hits = not paid, [f"paid SDKs in requirements: {paid or 'none'}"]
             items.append({"requirement": req, "met": met, "evidence": f"keywords found in code: {hits[:5]}; tests ok={tr.get('ok')}"})
         r = {"items": items, "gaps": []}
     met = sum(1 for x in r["items"] if x.get("met"))

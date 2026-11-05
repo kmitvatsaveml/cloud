@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LeafDoctor</title>
+<style>
+ body{font-family:system-ui,sans-serif;max-width:640px;margin:2rem auto;padding:0 16px;background:#f6faf4;color:#1d2b1d}
+ .card{background:#fff;border-radius:12px;padding:1.25rem;box-shadow:0 1px 4px #0002;margin-top:1rem}
+ button{background:#2e7d32;color:#fff;border:0;border-radius:8px;padding:.6rem 1.2rem;font-size:1rem;cursor:pointer}
+ img{max-width:100%;border-radius:8px;margin-top:.5rem}.muted{color:#667;font-size:.85rem}
+</style></head><body>
+<h1>🌿 LeafDoctor</h1><p>Upload a photo of a leaf to check it for common diseases and get treatment advice.</p>
+<div class="card"><input type="file" id="file" accept="image/*"> <button onclick="go()">Diagnose</button><img id="preview" alt=""></div>
+<div class="card" id="result" hidden></div>
+<script>
+async function go(){
+  const f=document.getElementById('file').files[0]; if(!f) return alert('Choose an image first');
+  document.getElementById('preview').src=URL.createObjectURL(f);
+  const fd=new FormData(); fd.append('image',f);
+  const r=await (await fetch('/api/predict',{method:'POST',body:fd})).json();
+  const el=document.getElementById('result'); el.hidden=false;
+  if(r.error){el.textContent=r.error;return;}
+  el.innerHTML=`<h2>${r.label}</h2><p>Confidence: ${(r.confidence*100).toFixed(0)}% · Severity: ${r.severity}</p>
+  <h3>Treatment</h3><ul>${r.treatment.map(t=>`<li>${t}</li>`).join('')}</ul><p class="muted">${r.disclaimer}</p>`;
+}
+</script></body></html>

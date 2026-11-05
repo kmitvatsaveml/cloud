@@ -1,0 +1,10 @@
+.venv/
+__pycache__/
+*.pyc
+.env
+data/chroma/
+data/transcripts/
+data/bm25/
+runs/
+checkpoints.sqlite*
+.pytest_cache/

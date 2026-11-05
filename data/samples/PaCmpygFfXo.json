@@ -1,0 +1,99 @@
+{
+  "video_id": "PaCmpygFfXo",
+  "title": "The spelled-out intro to language modeling: building makemore",
+  "url": "https://www.youtube.com/watch?v=PaCmpygFfXo",
+  "playlist": "Neural Networks: Zero to Hero",
+  "note": "SYNTHETIC SAMPLE: paraphrased summary of themes from this video, written for offline testing. NOT a verbatim transcript. Run `./run.sh ingest <playlist>` locally to fetch the real one.",
+  "segments": [
+    {
+      "start": 0.0,
+      "duration": 12.0,
+      "text": "In this lecture we build makemore, a character level language model, starting from the dumbest baseline: a bigram counting model."
+    },
+    {
+      "start": 12.0,
+      "duration": 13.0,
+      "text": "Always start with a simple baseline. A bigram model takes five minutes and gives you a number to beat."
+    },
+    {
+      "start": 25.0,
+      "duration": 13.0,
+      "text": "Become one with the data. Before any modeling, look at the examples, print them, count them, check the distribution."
+    },
+    {
+      "start": 38.0,
+      "duration": 9.0,
+      "text": "Look at your data with your own eyes; most bugs and most wins come from understanding the dataset."
+    },
+    {
+      "start": 47.0,
+      "duration": 9.0,
+      "text": "Evaluate with a single clear metric, here the negative log likelihood, so you know immediately whether a change helped."
+    },
+    {
+      "start": 56.0,
+      "duration": 12.0,
+      "text": "Split your data into train, validation and test, and never tune on the test set."
+    },
+    {
+      "start": 68.0,
+      "duration": 10.0,
+      "text": "Sample from the model often. Qualitative samples tell you things that the loss number hides."
+    },
+    {
+      "start": 78.0,
+      "duration": 13.0,
+      "text": "When the loss is suspiciously good, be suspicious; you are probably leaking information or have a bug."
+    },
+    {
+      "start": 91.0,
+      "duration": 9.0,
+      "text": "Add smoothing to the counts so that you never take the log of zero; infinite loss is a classic bug to watch for."
+    },
+    {
+      "start": 100.0,
+      "duration": 10.0,
+      "text": "Then we move to a neural network version and verify it reaches roughly the same loss as the counting baseline; that is a sanity check."
+    },
+    {
+      "start": 110.0,
+      "duration": 11.0,
+      "text": "Vectorize with tensors and broadcasting, but be very careful: broadcasting bugs are silent and they will bite you."
+    },
+    {
+      "start": 121.0,
+      "duration": 11.0,
+      "text": "Check shapes constantly. Print the shape of every tensor when you are unsure; shape mismatches are the most common error."
+    },
+    {
+      "start": 132.0,
+      "duration": 13.0,
+      "text": "Scope ruthlessly: get the end-to-end pipeline working with the simplest model, then improve one component at a time."
+    },
+    {
+      "start": 145.0,
+      "duration": 11.0,
+      "text": "Under time pressure I would rather have a small model that clearly works and demos well than a big ambitious one that is broken."
+    },
+    {
+      "start": 156.0,
+      "duration": 13.0,
+      "text": "Use a pretrained or simple model when you can; you do not need to train from scratch to show the idea."
+    },
+    {
+      "start": 169.0,
+      "duration": 11.0,
+      "text": "Keep a log of experiments and what changed; otherwise you forget which tweak actually helped."
+    },
+    {
+      "start": 180.0,
+      "duration": 11.0,
+      "text": "Do: start simple, verify every step, visualize, overfit a batch. Don't: add complexity before you have a baseline."
+    },
+    {
+      "start": 191.0,
+      "duration": 10.0,
+      "text": "Don't trust code you have not tested on a tiny input where you know the right answer."
+    }
+  ]
+}
